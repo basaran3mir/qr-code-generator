@@ -3,7 +3,7 @@
 A high-quality QR code generator written in Python.  
 Supports custom size, color options, and error correction levels for flexible and visually refined output.
 
-## 🎯 Features
+## 🚀 Features
 
 - 📏 Adjustable size and resolution
 - 🎨 Custom foreground and background colors
