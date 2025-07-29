@@ -13,6 +13,6 @@ Supports custom size, color options, and error correction levels for flexible an
 
 ## 📦 Technologies Used
 
-- Python 3.x  
+- Python 3.11.9
 - `qrcode`, `Pillow` (PIL)  
 - Minimal dependencies and lightweight
