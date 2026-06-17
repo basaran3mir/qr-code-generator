@@ -23,7 +23,7 @@ class QRCodeGenerator:
             Path(__file__).resolve().parent / "res" / "brand-logo.png"
         )
 
-    def _prepare_logo(self):
+    def prepare_logo(self):
         logo_path = self.brand_logo_path
         if not logo_path.exists():
             raise FileNotFoundError(f"Brand logo not found at {logo_path}")
@@ -47,12 +47,12 @@ class QRCodeGenerator:
         badge.paste(logo, (self.logo_border, self.logo_border), logo)
         return badge
 
-    def _embed_logo(self, img):
+    def embed_logo(self, img):
         img = img.convert("RGBA")
         if img.size != (self.qr_size, self.qr_size):
             img = img.resize((self.qr_size, self.qr_size), Image.Resampling.LANCZOS)
 
-        logo = self._prepare_logo()
+        logo = self.prepare_logo()
         pos = (
             (self.qr_size - self.logo_size) // 2,
             (self.qr_size - self.logo_size) // 2,
@@ -71,7 +71,7 @@ class QRCodeGenerator:
         qr.make(fit=True)
 
         img = qr.make_image(fill_color=self.fill_color, back_color=self.back_color)
-        img = self._embed_logo(img)
+        img = self.embed_logo(img)
 
         self.output_path.parent.mkdir(parents=True, exist_ok=True)
         img.save(self.output_path)
