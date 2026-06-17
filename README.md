@@ -1,45 +1,55 @@
-﻿# _QR Code Generator_
+﻿# qr-code-generator
 
-A clean, professional Python utility for generating branded QR codes with embedded logos and customizable styling.
+A clean and customizable QR code generator for Python with optional embedded branding logos. This project makes it easy to create high-quality QR codes with support for circular or square logo overlays, color customization, and portable output.
 
-**Key features**
+## Key features
 
-- Generate high-quality QR codes directly from URLs or text
-- Embed a centered logo in either a circular or square badge
-- Customize QR size, border, colors, and error correction
-- Save output as PNG files in a dedicated `output/` directory
-- Simple Python API with defaults for rapid use
+- Generate QR codes from any text or URL
+- Custom output size, colors, and border settings
+- Embed a logo at the center of the QR code
+- Supports circular and square logo shapes
+- Saves generated QR codes as PNG files
+- Simple Python API and example usage
 
 ## Getting Started
 
-Follow these instructions to set up the project locally and generate QR codes.
+Follow these steps to get the project running locally.
 
 ### Prerequisites
 
-- Python 3.10 or newer
-- Git (optional, for cloning the repository)
-- A virtual environment tool such as `venv`
+- Python 3.11 or newer
+- `pip` package manager
 
 ### Install
 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/baasaran3mir/qr-code-generator.git
+git clone https://github.com/basaran3mir/qr-code-generator.git
 cd qr-code-generator
 ```
 
-2. Create and activate a virtual environment:
+2. Create a virtual environment (recommended):
 
 ```bash
 python -m venv venv
-# Windows PowerShell
-venv\Scripts\Activate.ps1
-# Windows CMD
-venv\Scripts\activate.bat
 ```
 
-3. Install dependencies:
+3. Activate the virtual environment:
+
+- Windows:
+
+```powershell
+venv\Scripts\Activate.ps1
+```
+
+- macOS / Linux:
+
+```bash
+source venv/bin/activate
+```
+
+4. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -47,81 +57,97 @@ pip install -r requirements.txt
 
 ## Usage
 
-Run the example script from the repository root:
+Use the provided `examples/usage_example.py` script or import the generator into your own code.
 
-```bash
-python src/usage_example.py
-```
-
-This will generate two QR codes in the `output/` directory with both square and circular logo styles.
-
-You can also use the generator directly in your own script:
+### Example
 
 ```python
 from qr_code_generator import QRCodeGenerator
 
+url = "https://emirbasaran.com"
+
 generator = QRCodeGenerator(
-    data="https://example.com",
-    output_path="output/my_qr.png",
-    version=4,
-    box_size=20,
-    border=2,
-    fill_color="black",
-    back_color="white",
+    data=url,
+    output_path="output/qr_code_circle_logo.png",
     logo_shape="circle",
+)
+generator.generate()
+```
+
+### Example with square logo
+
+```python
+from qr_code_generator import QRCodeGenerator
+
+url = "https://emirbasaran.com"
+
+generator = QRCodeGenerator(
+    data=url,
+    output_path="output/qr_code_square_logo.png",
+    logo_shape="square",
 )
 generator.generate()
 ```
 
 ## Project Structure
 
-- `LICENSE` - project license file
-- `README.md` - project documentation
-- `requirements.txt` - Python dependency list
-- `output/` - generated QR code artifacts
-- `src/` - source code directory
-  - `qr_code_generator.py` - main QR code generator implementation
-  - `usage_example.py` - example usage script
-  - `res/` - resources directory containing the default brand logo
+```
+LICENSE
+README.md
+requirements.txt
+examples/
+  usage_example.py
+output/
+src/
+  qr_code_generator.py
+  res/
+```
+
+- `src/qr_code_generator.py` — main QR code generator implementation
+- `examples/usage_example.py` — usage examples for generating QR codes
+- `requirements.txt` — Python dependencies
+- `src/res/` — default assets such as the included brand logo
+- `output/` — generated QR code output files
 
 ## Configuration
 
-The `QRCodeGenerator` constructor supports these options:
+The `QRCodeGenerator` constructor supports several configurable parameters:
 
-- `data` - string content to encode in the QR code
-- `output_path` - destination file path for the generated PNG
-- `version` - QR code version, which affects data capacity
-- `box_size` - pixel size of each QR module
-- `border` - width of the QR border in modules
-- `fill_color` - color used for the QR modules
-- `back_color` - background color for the QR code
-- `brand_logo_path` - optional path to a custom logo image
-- `qr_size` - final QR image size in pixels
-- `logo_size` - size of the embedded logo badge
-- `logo_border` - padding between the logo and badge edge
-- `logo_shape` - `circle` or `square`
+- `data` (str): Text or URL encoded into the QR code
+- `output_path` (str): Destination file path for the PNG output
+- `version` (int): QR code version controlling data capacity
+- `box_size` (int): Pixel size of each QR code box
+- `border` (int): Border thickness around the QR code
+- `fill_color` (str): QR code color
+- `back_color` (str): Background color
+- `brand_logo_path` (str): Custom logo file path
+- `qr_size` (int): Final QR code image size in pixels
+- `logo_size` (int): Logo badge size in pixels
+- `logo_border` (int): Padding around the embedded logo
+- `logo_shape` (str): `"circle"` or `"square"`
 
 ## Development
 
-To contribute or modify the project:
+To make changes or extend the project:
 
-1. Activate the virtual environment.
-2. Install or update dependencies with `pip install -r requirements.txt`.
-3. Edit code in `src/qr_code_generator.py`.
-4. Test changes by running `python src/usage_example.py` or writing your own script.
+1. Install the dependencies in a virtual environment.
+2. Edit `src/qr_code_generator.py` or add new examples.
+3. Test your changes by running the example script:
+
+```bash
+python examples/usage_example.py
+```
+
+4. Verify that output files are generated correctly in the `output/` folder.
 
 ## Contributing
 
-Contributions are welcome. Please follow these steps:
-
-- Open an issue to discuss a feature or bug.
-- Fork the repository and create a feature branch.
-- Submit a pull request with a clear description of your changes.
+Contributions are welcome! Please open an issue or submit a pull request with improvements, bug fixes, or feature ideas. Keep changes focused and include clear examples when adding new generator behavior.
 
 ## License
 
-This project is licensed under the terms defined in the `LICENSE` file.
+This project is licensed under the terms of the `LICENSE` file.
 
 ## Contact
 
-For questions, feature requests, or bug reports, please open an issue in this repository.
+- GitHub: [basaran3mir](https://github.com/basaran3mir)
