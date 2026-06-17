@@ -150,4 +150,4 @@ This project is licensed under the terms of the `LICENSE` file.
 
 ## Contact
 
-- GitHub: [basaran3mir](https://github.com/basaran3mir)
+For questions, feature requests, or bug reports, please open an issue in this repository.
